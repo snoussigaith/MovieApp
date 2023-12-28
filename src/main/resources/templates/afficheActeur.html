@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Liste des films</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+
+<div class="container mt-4">
+    <a href="/acteur/new" class="btn btn-primary">Add new Acteur</a>
+    <h1>Liste des acteur</h1>
+
+    <table class="table table-hover">
+        <tr style="background-color: #cccccc;">
+            <th>#</th>
+            <th>NOM</th>
+            <th>PRENOM</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="act : ${acteur}">
+            <td th:text="${act.id}"></td>
+            <td th:text="${act.nom}"></td>
+            <td th:text="${act.prenom}"></td>
+            <td class="d-flex">
+                <a th:href="@{/acteur/delete/{id} (id=${act.id})}" onclick="return confirm('Voulez vous vraiment supprimer ce acteur')" class="btn btn-outline-danger">Delete</a>
+                <a th:href="@{/acteur/edit/{id} (id=${act.id})}" class="btn btn-warning">Update</a>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>
